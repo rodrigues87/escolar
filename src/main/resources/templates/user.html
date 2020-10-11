@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{fragments/layout}">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Index</title>
+</head>
+
+<body>
+<div layout:fragment="content">
+    <div class="container-fluid">
+
+        <!-- Page Heading -->
+        <h1 class="h3 mb-2 text-gray-800">Usuarios</h1>
+        <p class="mb-4">Crud de usuarios.</p>
+
+        <!-- DataTales Example -->
+        <div class="card shadow mb-4">
+            <div class="card-header">
+                <div class="row">
+                    <div class="col">
+                        <h6 class="m-0 font-weight-bold text-primary">Lista de Usuarios</h6>
+                    </div>
+                    <div class="col text-right">
+                        <a href="#" class="btn btn-primary btn-icon-split" data-toggle="modal" data-target="#addUserModal">
+                            <span class="icon text-white-50">
+                              <i class="fas fa-plus"></i>
+                            </span>
+                            <span class="text">ADD</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                        <thead>
+                        <tr>
+                            <th>Nome</th>
+                            <th>E-mail</th>
+                            <th>Endereço</th>
+                            <th>Telefone</th>
+                            <th>Ação</th>
+                        </tr>
+                        </thead>
+                        <tfoot>
+                        <tr>
+                            <th>Nome</th>
+                            <th>E-mail</th>
+                            <th>Endereço</th>
+                            <th>Telefone</th>
+                            <th>Ação</th>
+                        </tr>
+                        </tfoot>
+                        <tbody>
+                        <tr th:each="usuario : ${usuarios}">
+                            <td th:text="${usuario.nome}"></td>
+                            <td th:text="${usuario.email}"></td>
+                            <td th:text="${usuario.endereco}"></td>
+                            <td th:text="${usuario.telefone}"></td>
+                            <td>
+                                <a type="button" href="#" class="btn btn-danger btn-circle" data-toggle="modal" th:attr="data-target='#'+${usuario.id}" >
+                                    <i class="fas fa-trash"></i>
+                                </a>
+                            </td>
+
+                            <!-- Modal -->
+                            <div class="modal fade" th:id="${usuario.id}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel2" aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel2">Deletar Usuário</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            Tem certeza que deseja apagar o usuário <b th:text="${usuario.nome}" ?></b>
+
+
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Sair</button>
+
+                                            <a th:href="@{/deletar/{id} (id=${usuario.id})}" class="btn btn-danger">Deletar</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- MODAL -->
+    <div class="modal fade" id="addUserModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Novo Usuário</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <!-- FORMULÁRIO -->
+                    <form action="#" th:action="@{/salvar}" th:object="${usuario}" method="post">
+                        <div class="row">
+                            <div class="col">Nome</div>
+                            <div class="col"><input type="text" th:field="*{nome}" /></div>
+                        </div>
+                        <div class="row">
+                            <div class="col">E-mail</div>
+                            <div class="col"><input type="text" th:field="*{email}" /></div>
+                        </div>
+                        <div class="row">
+                            <div class="col">Endereço</div>
+                            <div class="col"><input type="text" th:field="*{endereco}" /></div>
+                        </div>
+                        <div class="row">
+                            <div class="col">Telefone</div>
+                            <div class="col"><input type="text" th:field="*{telefone}" /></div>
+                        </div>
+
+                        <div class="modal-footer">
+                            <button class="btn btn-secondary" type="button" data-dismiss="modal">Sair</button>
+                            <button type="submit" class="btn btn-primary">Salvar</button>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+
+</div>
+
+</body>
+
+</html>
