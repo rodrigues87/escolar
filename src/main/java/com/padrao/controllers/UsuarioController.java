@@ -8,12 +8,13 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
+@RequestMapping("/usuarios")
 public class UsuarioController {
 
     @Autowired
     UsuarioService service;
 
-    @GetMapping("/")
+    @RequestMapping("/")
     public ModelAndView listaUsuarios(Usuario usuario) {
         ModelAndView mv = new ModelAndView("user");
         mv.addObject("usuarios", service.findAll());
