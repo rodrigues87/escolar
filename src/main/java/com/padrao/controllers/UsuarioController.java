@@ -27,7 +27,7 @@ public class UsuarioController {
     public String save(Usuario usuario) {
         service.save(usuario);
 
-        return "redirect:/";
+        return "redirect:/usuarios/";
     }
 
     @RequestMapping("/editar/{id}")
@@ -40,7 +40,7 @@ public class UsuarioController {
     public String delete(@PathVariable Long id) {
         service.delete(id);
 
-        return "redirect:/";
+        return "redirect:/usuarios/";
     }
 
 }

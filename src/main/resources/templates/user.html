@@ -17,10 +17,6 @@
 <div layout:fragment="content">
     <div class="container-fluid">
 
-        <!-- Page Heading -->
-        <h1 class="h3 mb-2 text-gray-800">Usuarios</h1>
-        <p class="mb-4">Crud de usuarios.</p>
-
         <!-- DataTales Example -->
         <div class="card shadow mb-4">
             <div class="card-header">
@@ -53,13 +49,6 @@
                         </tr>
                         </thead>
                         <tfoot>
-                        <tr>
-                            <th>Nome</th>
-                            <th>E-mail</th>
-                            <th>Endereço</th>
-                            <th>Telefone</th>
-                            <th>Ação</th>
-                        </tr>
                         </tfoot>
                         <tbody>
                         <tr th:each="usuario : ${usuarios}">
@@ -91,7 +80,7 @@
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Sair</button>
 
-                                            <a th:href="@{/deletar/{id} (id=${usuario.id})}" class="btn btn-danger">Deletar</a>
+                                            <a th:href="@{/usuarios/deletar/{id} (id=${usuario.id})}" class="btn btn-danger">Deletar</a>
                                         </div>
                                     </div>
                                 </div>
@@ -117,7 +106,7 @@
                 </div>
                 <div class="modal-body">
                     <!-- FORMULÁRIO -->
-                    <form action="#" th:action="@{/salvar}" th:object="${usuario}" method="post">
+                    <form action="#" th:action="@{/usuarios/salvar}" th:object="${usuario}" method="post">
                         <div class="row">
                             <div class="col">Nome</div>
                             <div class="col"><input type="text" th:field="*{nome}" /></div>
