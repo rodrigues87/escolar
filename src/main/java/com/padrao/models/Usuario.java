@@ -14,8 +14,7 @@ public class Usuario implements Serializable {
     private Long id;
     private String nome;
     private String email;
-    private String endereco;
-    private String telefone;
+    private String password;
 
     public Long getId() {
         return id;
@@ -41,34 +40,11 @@ public class Usuario implements Serializable {
         this.email = email;
     }
 
-    public String getEndereco() {
-        return endereco;
+    public String getPassword() {
+        return password;
     }
 
-    public void setEndereco(String endereco) {
-        this.endereco = endereco;
-    }
-
-    public String getTelefone() {
-        return telefone;
-    }
-
-    public void setTelefone(String telefone) {
-        this.telefone = telefone;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        Usuario usuario = (Usuario) o;
-
-        return id != null ? id.equals(usuario.id) : usuario.id == null;
-    }
-
-    @Override
-    public int hashCode() {
-        return id != null ? id.hashCode() : 0;
+    public void setPassword(String password) {
+        this.password = password;
     }
 }

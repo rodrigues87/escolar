@@ -43,8 +43,6 @@
                         <tr>
                             <th>Nome</th>
                             <th>E-mail</th>
-                            <th>Endereço</th>
-                            <th>Telefone</th>
                             <th>Ação</th>
                         </tr>
                         </thead>
@@ -54,8 +52,6 @@
                         <tr th:each="usuario : ${usuarios}">
                             <td th:text="${usuario.nome}"></td>
                             <td th:text="${usuario.email}"></td>
-                            <td th:text="${usuario.endereco}"></td>
-                            <td th:text="${usuario.telefone}"></td>
                             <td>
                                 <a type="button" href="#" class="btn btn-danger btn-circle" data-toggle="modal" th:attr="data-target='#'+${usuario.id}" >
                                     <i class="fas fa-trash"></i>
@@ -116,12 +112,8 @@
                             <div class="col"><input type="text" th:field="*{email}" /></div>
                         </div>
                         <div class="row">
-                            <div class="col">Endereço</div>
-                            <div class="col"><input type="text" th:field="*{endereco}" /></div>
-                        </div>
-                        <div class="row">
-                            <div class="col">Telefone</div>
-                            <div class="col"><input type="text" th:field="*{telefone}" /></div>
+                            <div class="col">Password</div>
+                            <div class="col"><input type="password" th:field="*{password}" /></div>
                         </div>
 
                         <div class="modal-footer">
